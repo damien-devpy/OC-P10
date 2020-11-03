@@ -1,7 +1,7 @@
 from .base import *
 from os import environ
 
-ALLOWED_HOSTS += ['localhost',]
+ALLOWED_HOSTS += ['*',]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -22,6 +22,4 @@ DATABASES = {
 
 STATIC_ROOT = BASE_DIR / 'production_staticfiles/'
 
-SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
