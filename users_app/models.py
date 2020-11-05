@@ -21,7 +21,7 @@ class User(AbstractUser):
     favorites = models.ManyToManyField(Product, db_table="favorite")
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['username']
 
     def __str__(self):
         # If user has record an username, display it.

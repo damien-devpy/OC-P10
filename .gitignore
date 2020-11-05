@@ -21,4 +21,4 @@ gunicorn.conf.py
 production_staticfiles/
 
 #Settings file for production
-*/production.py
+production.py

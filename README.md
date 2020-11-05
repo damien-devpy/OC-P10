@@ -3,5 +3,10 @@
 
 ### Introduction
 
-Python/Django Web application deployed in production using Nginx HTTP server and Gunicorn as WSGi server. 
-[Pur beurre](http://51.159.190.2/) is running on a Scaleway instance.
+Python/Django Web application deployed in production. 
+[Pur beurre](https://purbeurre.damienramelet.com/) is running on a Scaleway instance.
+
+Nginx HTTP server
+Gunicorn
+Sentry support
+HTTPS redirection with Let's encrypt certificate
