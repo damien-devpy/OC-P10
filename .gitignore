@@ -13,3 +13,9 @@ __pycache__/
 
 # Log
 *.log
+
+#Gunicorn configuration file
+gunicorn.conf.py
+
+#Production static files folder
+production_staticfiles/

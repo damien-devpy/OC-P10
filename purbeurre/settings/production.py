@@ -1,5 +1,7 @@
 from .base import *
 from os import environ
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 ALLOWED_HOSTS += ['*',]
 
@@ -22,4 +24,12 @@ DATABASES = {
 
 STATIC_ROOT = BASE_DIR / 'production_staticfiles/'
 
-SESSION_COOKIE_SECURE = True
+sentry_sdk.init(
+    dsn="https://78b30cf56e6e40c49e16087929b6f3f6@o472074.ingest.sentry.io/5505178",
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)

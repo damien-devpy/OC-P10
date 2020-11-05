@@ -15,8 +15,8 @@ django-widget-tweaks = "*"
 requests = "*"
 gunicorn = "*"
 dj-database-url = "*"
-psycopg2 = "*"
 psycopg2-binary = "*"
+sentry-sdk = "*"
 
 [requires]
 python_version = "3.8"
