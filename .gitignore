@@ -19,3 +19,6 @@ gunicorn.conf.py
 
 #Production static files folder
 production_staticfiles/
+
+#Settings file for production
+*/production.py
