@@ -48,6 +48,10 @@ jobs:
         run: |
           pip install pipenv
           pipenv install --dev
+          pipenv install tchappui-webdrivers
+
+      - name: Getting GeckoWebDriver
+        run: install-webdrivers
 
       - name: Running tests
         run: pipenv run pytest --driver Firefox
