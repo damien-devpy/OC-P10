@@ -58,7 +58,8 @@ jobs:
           tar -xzf geckodriver-v0.28.0-linux64.tar.gz -C geckodriver
           export PATH=$PATH:$PWD/geckodriver
 
+      - name: Running local server
+        run: pipenv run python manage.py runserver
+
       - name: Running tests
-        run: |
-          pipenv run python manage.py runserver
-          pipenv run pytest --driver Firefox
+        run: pipenv run pytest --driver Firefox
