@@ -51,7 +51,6 @@ jobs:
 #      - name: Running tests
 #        run: pipenv run pytest --driver Firefox
 
-
       - name: Create SSH keys
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
