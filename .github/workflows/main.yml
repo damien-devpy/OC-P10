@@ -50,11 +50,12 @@ jobs:
           pipenv install --dev
           pipenv install tchappui-webdrivers
 
-      - name: Getting GeckoWebDriver
-        run: pipenv run install-webdrivers
+      - name: Install Geckodriver
+        run: |
+          wget https://github.com/mozilla/geckodriver/releases/download/v0.28.0/geckodriver-v0.28.0-linux64.tar.gz
+          mkdir geckodriver
+          tar -xzf geckodriver-v0.28.0-linux64.tar.gz -C geckodriver
+          export PATH=$PATH:$PWD/geckodriver
 
       - name: Running tests
-        run: pipenv run pytest --driver Chrome
-
-      - name: Display WebDriver logs
-        run: cat /tmp/pytest-of-runner/pytest-0/test_login0/driver.log
+        run: pipenv run pytest --driver Firefox
