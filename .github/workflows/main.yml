@@ -19,6 +19,7 @@ jobs:
     env:
       DATABASE_PASSWORD: 'my_db_password'
       SECRET_KEY: 'my_secret_key'
+      MOZ_HEADLESS: 1
 
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -42,13 +43,6 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.8'
-
-      # Runs a single command using the runners shell
-      - name: Install dependencies
-        run: |
-          pip install pipenv
-          pipenv install --dev
-          pipenv install tchappui-webdrivers
 
       - name: Install Geckodriver
         run: |
