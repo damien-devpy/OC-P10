@@ -54,4 +54,4 @@ jobs:
         run: pipenv run install-webdrivers
 
       - name: Running tests
-        run: pipenv run pytest --driver Firefox
+        run: pipenv run pytest --driver Chrome
