@@ -1,6 +1,7 @@
 name: Check Pull Requests
 
-on: [push, pull_request]
+on:
+  pull_request
 
 jobs:
 
@@ -11,6 +12,7 @@ jobs:
       ENV: development
       MOZ_HEADLESS: 1
 
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     services:
@@ -21,9 +23,10 @@ jobs:
           POSTGRES_USER: 'purbeurre_db_admin'
           POSTGRES_PASSWORD: 'my_db_password'
         ports:
-          - 5432: 5432
+          - 5432:5432
 
     steps:
+
       - uses: actions/checkout@v2
 
       - name: Setup Python 3.8
@@ -36,7 +39,6 @@ jobs:
           pip install pipenv
           pipenv install --dev
 
-      # Geckodriver is needed in order to run functionnals tests with Selenium
       - name: Install Geckodriver
         run: |
           wget https://github.com/mozilla/geckodriver/releases/download/v0.28.0/geckodriver-v0.28.0-linux64.tar.gz
