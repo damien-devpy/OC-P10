@@ -55,3 +55,6 @@ jobs:
 
       - name: Running tests
         run: pipenv run pytest --driver Chrome
+
+      - name: Display WebDriver logs
+        run: cat /tmp/pytest-of-runner/pytest-0/test_login0/driver.log
