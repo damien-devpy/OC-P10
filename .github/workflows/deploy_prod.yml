@@ -1,8 +1,7 @@
-name: Check Pull Requests
+name: Deploy to production
 
 on:
   push:
-    branches:
       - Setup-CD
 
 jobs:
