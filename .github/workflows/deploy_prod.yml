@@ -51,11 +51,18 @@ jobs:
 #      - name: Running tests
 #        run: pipenv run pytest --driver Firefox
 
-      - name: Deploy to production
-        with:
-          key: ${{ secrets.SSH_KEY }}
+      - name: Create SSH keys
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
         run: |
-          ssh -tt -o StrictHostKeyChecking=no damien@51.159.190.2
+          mkdir ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ../id_rsa
+          echo "$SSH_PUBLIC_KEY" > ../id_rsa.pub
+
+      - name: Deploy to production
+        run: |
+          ssh -tt damien@51.159.190.2
           "cd OC-P8 && git pull origin master && pipenv shell && python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate && exit"
 
 
