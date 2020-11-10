@@ -1,0 +1,58 @@
+name: Check Pull Requests
+
+on:
+  push:
+    branches:
+      - Setup-CD
+
+jobs:
+
+  build:
+    env:
+      DATABASE_PASSWORD: 'my_db_password'
+      SECRET_KEY: 'my_secret_key'
+      ENV: development
+      MOZ_HEADLESS: 1
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_DB: 'purbeurre_db'
+          POSTGRES_USER: 'purbeurre_db_admin'
+          POSTGRES_PASSWORD: 'my_db_password'
+        ports:
+          - 5432:5432
+
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Setup Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: |
+          pip install pipenv
+          pipenv install --dev
+
+      - name: Install Geckodriver
+        run: |
+          wget https://github.com/mozilla/geckodriver/releases/download/v0.28.0/geckodriver-v0.28.0-linux64.tar.gz
+          mkdir geckodriver
+          tar -xzf geckodriver-v0.28.0-linux64.tar.gz -C geckodriver
+          export PATH=$PATH:$PWD/geckodriver
+
+      - name: Running tests
+        run: pipenv run pytest --driver Firefox
+
+      - name: Deploy to production
+        run: |
+          ssh damien@51.159.190.2
+          "cd OC-P8 && git pull origin master && pipenv shell && python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate && exit"
+
