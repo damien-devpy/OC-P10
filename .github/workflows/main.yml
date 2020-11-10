@@ -58,4 +58,6 @@ jobs:
           export PATH=$PATH:$PWD/geckodriver
 
       - name: Running tests
-        run: pipenv run pytest --driver Firefox
+        run: |
+          pipenv run python manage.py runserver
+          pipenv run pytest --driver Firefox
