@@ -50,4 +50,4 @@ jobs:
           pipenv install --dev
 
       - name: Running tests
-        run: pipenv run pytest
+        run: pipenv run pytest --driver Firefox
