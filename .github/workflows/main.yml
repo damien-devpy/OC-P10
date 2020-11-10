@@ -15,10 +15,6 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  # Set up environment variable
-  env:
-    SECRET_KEY: my_django_secret_key
-    DATABASE_PASSWORD: my_database_password
 
   build:
     # The type of runner that the job will run on
