@@ -19,6 +19,7 @@ jobs:
     env:
       DATABASE_PASSWORD: 'my_db_password'
       SECRET_KEY: 'my_secret_key'
+      ENV: development
       MOZ_HEADLESS: 1
 
     # The type of runner that the job will run on
