@@ -37,8 +37,8 @@ jobs:
 
       - name: Environment variable
         env:
-          SECRET_KEY: 'my_secret_key'
-          DATABASE_PASSWORD: 'my_database_password'
+          SECRET_KEY: my_secret_key
+          DATABASE_PASSWORD: my_database_password
 
       - name: Running tests
         run: pipenv run pytest
