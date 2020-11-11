@@ -54,9 +54,11 @@ jobs:
       - name: Create SSH keys
         env:
           SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           mkdir -p ~/.ssh/
           cd ~/.ssh/
+          echo $SSH_PRIVATE_KEY > id_rsa
           echo $SSH_PUBLIC_KEY > id_rsa.pub
 
       - name: Deploy to production
