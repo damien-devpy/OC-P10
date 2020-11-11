@@ -59,6 +59,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh/
           cd ~/.ssh/
+          chmod -R 700 ~/.ssh/
           echo $SSH_PRIVATE_KEY > id_rsa
           echo $SSH_PUBLIC_KEY > id_rsa.pub
 
