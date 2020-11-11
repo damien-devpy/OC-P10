@@ -53,17 +53,14 @@ jobs:
 
       - name: Create SSH keys
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
-          KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
         run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ../id_rsa
           echo "$SSH_PUBLIC_KEY" > ../id_rsa.pub
 
       - name: Deploy to production
         run: |
-          ssh -o StrictHostKeyChecking=no damien@51.159.190.2
+          ssh -tto StrictHostKeyChecking=no damien@51.159.190.2
           "cd OC-P8 && git pull origin master && pipenv shell && python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate && exit"
 
 
