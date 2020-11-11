@@ -52,14 +52,16 @@ jobs:
 #        run: pipenv run pytest --driver Firefox
 
       - name: Create SSH keys
+        env:
+          SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
         run: |
           mkdir -p ~/.ssh/
           cd ~/.ssh/
-          echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDkuA8W+LNkx0cW4AhryH28WfQfdVS9LxlJXGrtxxT8C2MTC1+xa/sspzAdIdoGzAR7I1rBYE1D6j7pGxFTiKWRbVBYW3wciBPLfJ3mD8eStlQTfCFXcMK1CZ0LdUiyIAOMUQW0BU1tgtJ9PJCfE+umMaNA+rjuBEU64hR5BqAJyI+l4Jvw2RT4vmruZnMv+4t9kM5/Yq2bJIk6ktkvqPhUbwzudoSmLMlioFIea9K/V10RqstJLoTDNdFXYP9uj1znr21JMy9RIzjFZicQPtU+d/1PnzZJnyZmp4yzR0DYEQsvuLNLFHVYR52HriLHMaOWSAqrgs9L8KG/6jxW1nU0RHHhp4BPhbflJvg6SiZQx5qt82DpiCAye450ORAqqwRO6kMko56t36ILeG3i7fACNVuow3E47Z02nhk+sRCAE+ff2za4K1Cb0MZLzgNnKQJOeS0X+5Y8fcqpdmfzaV0a54vSDrdA2IMJSxt/76gtn8GzoqjjmYboRhr26jxA2JI4ZoBajJlCbmBo6AVo4j3HXBexlEuZOpBXnQQNR8UNtZmbqnk0U+CHm1HurmSOfaeHsnFe+ank+lakQGNVnDVuZfrTmpwdwWlEzi3lzlkotCoy1Noa5lWdx2pXIwiadzY1v02GR1FrGPqOzwLGd0H9QjaklB85JMr2giiuL4vOUw== damien.ramelet@protonmail.com" > id_rsa.pub
+          echo $SSH_PUBLIC_KEY > id_rsa.pub
 
       - name: Deploy to production
         run: |
-          ssh -tto StrictHostKeyChecking=no damien@51.159.190.2
+          ssh -vvvtto StrictHostKeyChecking=no damien@51.159.190.2
           "cd OC-P8 && git pull origin master && pipenv shell && python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate && exit"
 
 
