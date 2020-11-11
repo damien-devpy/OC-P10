@@ -58,7 +58,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           mkdir -p /home/runner/.ssh/
-          cd /home/runner.ssh/
+          cd /home/runner/.ssh/
           chmod -R 700 /home/runner/.ssh/
           echo $SSH_PRIVATE_KEY > id_rsa
           echo $SSH_PUBLIC_KEY > id_rsa.pub
