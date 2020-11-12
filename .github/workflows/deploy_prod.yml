@@ -62,6 +62,6 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
       - name: Deploy to production
         run: |
-          ssh -vvvtto StrictHostKeyChecking=no damien@51.159.190.2 "cd OC-P8 && git pull origin Setup-CD && git checkout Setup-CD && pip install pipenv && pipenv shell && python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate && exit"
+          ssh -vvvtto StrictHostKeyChecking=no damien@51.159.190.2 "cd OC-P8 && git pull origin Setup-CD && git checkout Setup-CD && pipenv run python manage.py collectstatic --noinput && pipenv run python manage.py makemigrations && pipenv run python manage.py migrate && exit"
 
 
