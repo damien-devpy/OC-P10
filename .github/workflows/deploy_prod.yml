@@ -52,16 +52,14 @@ jobs:
 #        run: pipenv run pytest --driver Firefox
 
       - name: Create SSH keys
-        env:
-          SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           mkdir -p ~/.ssh/
           cd ~/.ssh/
-          chmod 700 ~/.ssh/
-          echo $SSH_PUBLIC_KEY
-
-          echo ${{ secrets.SSH_PUBLIC_KEY }}
+          chmod 777 ~/.ssh/
+          echo ${{ secrets.SSH_PUBLIC_KEY }} > id_rsa.pub
+          chmod 664 id_rsa.pub
+          echo ${{ secrets.SSH_PRIVATE_KEY }} > id_rsa
+          chmod 600 id_rsa
       - name: Deploy to production
         run: |
           ssh -vvvtto StrictHostKeyChecking=no damien@51.159.190.2
