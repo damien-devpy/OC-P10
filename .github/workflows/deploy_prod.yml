@@ -62,6 +62,6 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
       - name: Deploy to production
         run: |
-          ssh -t StrictHostKeyChecking=no damien@51.159.190.2 "cd /home/damien/OC-P8/ && pwd && source /home/damien/.local/share/virtualenvs/OC-P8-kU3XWA-T/bin/activate && export ENV=production && git pull origin Setup-CD && git checkout Setup-CD && /home/damien/.local/bin/pipenv run python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate && sudo supervisorctl reread && sudo supervisorctl update && exit"
+          ssh -tt StrictHostKeyChecking=no damien@51.159.190.2 "cd /home/damien/OC-P8/ && pwd && source /home/damien/.local/share/virtualenvs/OC-P8-kU3XWA-T/bin/activate && export ENV=production && git pull origin Setup-CD && git checkout Setup-CD && /home/damien/.local/bin/pipenv run python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate && sudo supervisorctl reread && sudo supervisorctl update && exit"
 
 
