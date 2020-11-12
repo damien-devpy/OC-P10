@@ -59,9 +59,8 @@ jobs:
           mkdir -p ~/.ssh/
           cd ~/.ssh/
           chmod 700 ~/.ssh/
-          echo $SSH_PRIVATE_KEY > id_rsa
-          echo $SSH_PUBLIC_KEY > id_rsa.pub
-          cat id_rsa.pub
+          echo $SSH_PRIVATE_KEY
+          echo $SSH_PUBLIC_KEY
       - name: Deploy to production
         run: |
           ssh -vvvtto StrictHostKeyChecking=no damien@51.159.190.2
