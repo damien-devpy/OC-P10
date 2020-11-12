@@ -61,9 +61,10 @@ jobs:
           chmod 700 ~/.ssh/
           echo $SSH_PRIVATE_KEY > id_rsa
           echo $SSH_PUBLIC_KEY > id_rsa.pub
-          chmod 600 ~/.ssh/
       - name: Deploy to production
         run: |
+          chmod 644 ~/.ssh/id_rsa.pub
+          chmod 600 ~/.ssh/id_rsa
           cat ~/.ssh/id_rsa
           cat ~/.ssh/id_rsa.pub
           ssh -vvvtto StrictHostKeyChecking=no damien@51.159.190.2
