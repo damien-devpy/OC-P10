@@ -4,9 +4,12 @@
 ### Introduction
 
 Python/Django Web application deployed in production. 
+
 [Pur beurre](https://purbeurre.damienramelet.com/) is running on a Scaleway instance.
 
-Nginx HTTP server
-Gunicorn
-Sentry support
-HTTPS redirection with Let's encrypt certificate
+- Nginx as HTTP server
+- Gunicorn
+- HTTPS redirection using Let's encrypt certificate
+- Pipeline CI/CD through Github Actions
+- Sentry support
+
